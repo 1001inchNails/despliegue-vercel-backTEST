@@ -1,3 +1,12 @@
+const express = require('express');
+
+
+const app = express();
+
+
+app.use(express.json());
+
+
 async function conectarCliente(){    // funcion para conexion a cliente...
   const { MongoClient, ServerApiVersion } = require('mongodb');
   const uri = "mongodb+srv://dccAtlMongoC_S:1001%25%25wWqq4904@clusterbuster.bl5p1.mongodb.net/?retryWrites=true&w=majority&appName=ClusterBuster";
@@ -35,11 +44,12 @@ async function insertarNuevoDocumento(nuevoDoc) { // inserta nuevo documento en 
   }
 }
 
-const express = require('express');
 
-const app = express();
-
-app.use(express.json());
+app.get("/", (req, res) => {
+  res.json({
+    message: "PI PI PI MADAFAKA",
+  })
+})
 
 // https://stackoverflow.com/questions/47523265/jquery-ajax-no-access-control-allow-origin-header-is-present-on-the-requested
 app.use((req, res, next) => {
@@ -110,10 +120,4 @@ app.post('/api/datos', async(req,res)=>{
 });
 
 module.exports = app;
-
-/* const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  console.log(`Listening: http://localhost:${port}`);
-});
- */
 
